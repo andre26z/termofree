@@ -5,8 +5,7 @@ import Keyboard from './Keyboard.vue'
 import { LetterState } from './types'
 
 // Get word of the day
-const answer = getWordOfTheDay()
-
+let answer = getWordOfTheDay()
 
 const board = $ref(
   Array.from({ length: 6 }, () =>
@@ -169,7 +168,11 @@ function genResultGrid() {
     })
     .join('\n')
 }
+
 function resetGame() {
+  // Get new word of the day
+  answer = getWordOfTheDay()
+
   // Reset the board
   board.forEach(row => row.forEach(tile => {
     tile.letter = '';
